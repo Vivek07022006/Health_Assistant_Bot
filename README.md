@@ -76,7 +76,6 @@ Request:
   "message": "What are the symptoms of diabetes?"
 }
 
-
 Response:
 {
   "response": "Common symptoms of diabetes include increased thirst, frequent urination, fatigue, and blurred vision."

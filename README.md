@@ -67,23 +67,22 @@ npm run dev
 ```
 
 ➡️ Frontend runs on http://localhost:5173
----
+
 📌 API Endpoints
 POST /chat
 
 Request:
-
 {
   "message": "What are the symptoms of diabetes?"
 }
 
 
 Response:
-
 {
   "response": "Common symptoms of diabetes include increased thirst, frequent urination, fatigue, and blurred vision."
 }
 ---
+
 🧩 Project Structure
 healthcare-chatbot/
 │── backend/

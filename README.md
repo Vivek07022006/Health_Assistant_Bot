@@ -80,6 +80,7 @@ Response:
 {
   "response": "Common symptoms of diabetes include increased thirst, frequent urination, fatigue, and blurred vision."
 }
+
 ---
 ```
 🧩 Project Structure

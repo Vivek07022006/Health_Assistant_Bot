@@ -7,8 +7,6 @@ function Chat() {
 
   const sendMessage = async () => {
     if (!input.trim()) return;
-
-    // Add user message
     const newMessages = [...messages, { sender: "user", text: input }];
     setMessages(newMessages);
     setInput("");
@@ -23,8 +21,6 @@ function Chat() {
 
       const data = await response.json();
       setIsTyping(false);
-
-      // Add bot reply
       setMessages([...newMessages, { sender: "bot", text: data.response }]);
     } catch (error) {
       setIsTyping(false);
@@ -38,96 +34,104 @@ function Chat() {
   return (
     <div
       style={{
-        maxWidth: "800px",
+        maxWidth: "900px",
         margin: "20px auto",
-        padding: "20px",
-        background: "#fdf6e3", // cream background
-        borderRadius: "12px",
-        boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",
+        background: "#ffffff",
+        borderRadius: "16px",
+        boxShadow: "0px 4px 16px rgba(0,0,0,0.1)",
+        display: "flex",
+        flexDirection: "column",
+        height: "600px",
       }}
     >
-      <h2 style={{ marginBottom: "15px", color: "#1d3557" }}>
-        💬 Healthcare Chatbot
-      </h2>
-
-      {/* Chat window */}
+      {/* Header */}
       <div
         style={{
-          border: "1px solid #ddd",
-          borderRadius: "8px",
+          background: "linear-gradient(135deg, #457b9d, #1d3557)",
           padding: "15px",
-          height: "400px",
+          borderTopLeftRadius: "16px",
+          borderTopRightRadius: "16px",
+          color: "white",
+          fontWeight: "600",
+          fontSize: "18px",
+        }}
+      >
+        💬 HealthCareBot Chat
+      </div>
+
+      {/* Messages */}
+      <div
+        style={{
+          flex: 1,
+          padding: "20px",
           overflowY: "auto",
-          background: "white",
-          marginBottom: "10px",
+          background: "#f1faee",
         }}
       >
         {messages.map((msg, idx) => (
           <div
             key={idx}
             style={{
-              textAlign: msg.sender === "user" ? "right" : "left",
-              margin: "8px 0",
+              display: "flex",
+              justifyContent: msg.sender === "user" ? "flex-end" : "flex-start",
+              marginBottom: "12px",
             }}
           >
-            <span
+            <div
               style={{
-                background:
-                  msg.sender === "user" ? "#e0e0e0" : "#a8dadc", // user = gray, bot = teal
-                color: "#000",
-                padding: "10px 14px",
-                borderRadius: "18px",
-                display: "inline-block",
+                background: msg.sender === "user" ? "#457b9d" : "#a8dadc",
+                color: msg.sender === "user" ? "white" : "#1d3557",
+                padding: "12px 16px",
+                borderRadius: "20px",
                 maxWidth: "70%",
-                wordWrap: "break-word",
                 fontSize: "15px",
-                fontWeight: msg.sender === "bot" ? "500" : "normal",
               }}
             >
               {msg.text}
-            </span>
+            </div>
           </div>
         ))}
 
-        {/* Typing indicator */}
         {isTyping && (
-          <div style={{ textAlign: "left", margin: "6px 0", color: "#1d3557" }}>
-            <span
-              style={{
-                background: "#a8dadc",
-                padding: "8px 12px",
-                borderRadius: "18px",
-                display: "inline-block",
-                fontSize: "14px",
-              }}
-            >
-              Bot is typing<span className="dot">.</span>
-              <span className="dot">.</span>
-              <span className="dot">.</span>
-            </span>
+          <div style={{ color: "#1d3557", fontStyle: "italic" }}>
+            Bot is typing...
           </div>
         )}
       </div>
 
-      {/* Input area */}
-      <div style={{ display: "flex", gap: "10px" }}>
+      {/* Input */}
+      <div
+        style={{
+          display: "flex",
+          padding: "12px",
+          borderTop: "1px solid #ddd",
+          background: "#fff",
+        }}
+      >
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Type your message..."
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault(); // avoid form submission
+              sendMessage();
+            }
+          }}
+          placeholder="Ask me about health, fitness, or wellness..."
           style={{
             flex: 1,
             padding: "12px",
             borderRadius: "8px",
             border: "1px solid #ccc",
+            marginRight: "10px",
           }}
         />
         <button
           onClick={sendMessage}
           style={{
             padding: "12px 24px",
-            background: "#1d3557",
+            background: "#e63946",
             color: "white",
             border: "none",
             borderRadius: "8px",

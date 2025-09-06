@@ -15,7 +15,6 @@ function Login() {
     setError("");
     setLoading(true);
 
-    // Simulate login delay
     setTimeout(() => {
       if (email === "test@gmail.com" && password === "1234") {
         navigate("/dashboard");
@@ -23,53 +22,63 @@ function Login() {
         setError("Invalid email or password");
       }
       setLoading(false);
-    }, 1500);
+    }, 1200);
   };
 
   return (
     <div className="login-container">
-      <form className="login-box" onSubmit={handleLogin}>
-        <h2>WELCOME</h2>
+      <div className="login-card">
+        <div className="login-header">
+          <h2>HealthCare<span>Bot</span></h2>
+          <p>Sign in to continue</p>
+        </div>
+
         {error && <p className="error">{error}</p>}
 
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          placeholder="you@example.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          type={showPassword ? "text" : "password"}
-          placeholder="••••••••"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-
-        <div className="toggle-password">
+        <form onSubmit={handleLogin}>
+          <label htmlFor="email">Email</label>
           <input
-            type="checkbox"
-            id="showPassword"
-            checked={showPassword}
-            onChange={() => setShowPassword(!showPassword)}
+            id="email"
+            type="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
-          <label htmlFor="showPassword">Show Password</label>
-        </div>
 
-        <div className="forgot-password">
-          <a href="/forgot-password">Forgot Password?</a>
-        </div>
+          <label htmlFor="password">Password</label>
+          <div className="password-wrapper">
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <span
+              className="toggle-icon"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </span>
+          </div>
 
-        <button type="submit" disabled={loading}>
-          {loading ? <span className="spinner"></span> : "Login"}
-        </button>
-      </form>
+          <div className="forgot-password">
+            <a href="/forgot-password">Forgot Password?</a>
+          </div>
+
+          <button type="submit" disabled={loading}>
+            {loading ? <span className="spinner"></span> : "Login"}
+          </button>
+        </form>
+
+        <div className="signup-link">
+          <p>
+            Don’t have an account? <a href="/register">Sign up</a>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

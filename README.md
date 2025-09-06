@@ -28,11 +28,13 @@ Backend: Flask, Flask-CORS
 AI Model: Google Gemini 1.5 Flash
 
 Other Tools: dotenv, requests
-
+---
 ⚡ Getting Started
 1️⃣ Clone the Repository
-git clone https://github.com/your-username/healthcare-chatbot.git
+```bash
+git clone https://github.com/Vivek07022006/Health_Assistant_Bot.git
 cd healthcare-chatbot
+```
 
 2️⃣ Backend Setup (Flask)
 cd backend
@@ -49,20 +51,23 @@ GEMINI_API_KEY=your_api_key_here
 
 
 Run Flask server:
-
+```bash
 python app.py
-
+```
 
 ➡️ Backend runs on http://127.0.0.1:5000
 
 3️⃣ Frontend Setup (React)
+```bash
 cd frontend
-npm install
-npm run dev
 
+npm install
+
+npm run dev
+```
 
 ➡️ Frontend runs on http://localhost:5173
-
+---
 📌 API Endpoints
 POST /chat
 
@@ -78,7 +83,7 @@ Response:
 {
   "response": "Common symptoms of diabetes include increased thirst, frequent urination, fatigue, and blurred vision."
 }
-
+---
 🧩 Project Structure
 healthcare-chatbot/
 │── backend/
@@ -95,7 +100,7 @@ healthcare-chatbot/
 │   └── tailwind.config.js
 │
 └── README.md
-
+---
 🛡️ Notes
 
 The bot will only respond to health-related queries.
@@ -105,10 +110,18 @@ If asked something unrelated, it replies:
 "Sorry, I don’t have access to other resources, I’m a Health care bot."
 
 👨‍💻 Run Commands Quick Reference
+---
 # Backend
-cd backend
-python app.py
 
+```bash
+cd backend
+
+python app.py
+```
 # Frontend
+
+```bash
 cd frontend
+
 npm run dev
+```
